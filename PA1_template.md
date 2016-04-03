@@ -71,7 +71,7 @@ MedianSteps
 ### Creating AverageSteps data frame grouping by interval and mean on steps
 AverageSteps <- group_by(rawData, interval) %>% summarize(MeanSteps = mean(steps,na.rm=TRUE))
 ### using ggplot with interval on x-axis and MeanSteps on y-axis to generate time series plot
-ggplot(AverageSteps, aes(interval,MeanSteps)) + geom_line()
+ggplot(AverageSteps, aes(interval,MeanSteps)) + geom_line() + ggtitle("Time series plot of Interval vs MeanSteps")
 ```
 
 ![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png) 
@@ -188,10 +188,10 @@ MeanSteps<-aggregate(steps~interval+Day, completedData,mean)
 
 ### using ggplot to plot the dataframe MeanSteps
 
-ggplot(MeanSteps, aes(interval,steps)) + 
+ggplot(MeanSteps, aes(interval,steps)) + ggtitle("Time series plot of activity on weekday and weekend") +
   facet_wrap(~Day,ncol=1) + 
   geom_line(color = "steelblue") +
-  theme_bw()+
+  theme_bw() +
   theme(axis.line = element_line(colour = "black"),
         panel.grid.major = element_blank(),
         panel.grid.minor = element_blank())
